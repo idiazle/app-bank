@@ -10,16 +10,51 @@ const LoanScreen = () => {
     { label: 'CE', value: 'ce' },
     { label: 'RUT', value: 'rut' },
   ]
+  const cuotas = [
+    { label: '12 meses', value: '12' },
+    { label: '24 meses', value: '24' },
+    { label: '36 meses', value: '36' },
+  ]
 
   const [selectedOption, setSelectedOption] = useState<string>()
+  const [selectedCuotas, setSelectedCuotas] = useState<string>()
+  const [data, setData] = useState({
+    dni: '',
+    email: '',
+    phone: '',
+    firstName: '',
+    lastName: '',
+    loanAmount: '',
+  })
+  const [submitData, setSubmitData] = useState({})
+
+  const handleSubmit = () => {
+    setSubmitData({
+      ...data,
+      typeDocument: selectedOption,
+      cuotas: selectedCuotas,
+    })
+    console.log(submitData);
+    setData({
+      dni: '',
+      email: '',
+      phone: '',
+      firstName: '',
+      lastName: '',
+      loanAmount: '',
+    })
+    setSelectedOption(undefined)
+    setSelectedCuotas(undefined)
+    Alert.alert("Información guardada correctamente")
+  }
 
   return (
     <SafeAreaView style={styles.container} >
       <StatusBar barStyle="dark-content" />
       <Header title="Préstamos" />
       <View style={styles.formContainer}>
-        <Text>Formulario</Text>
-        <Text>Completa tus datos y un colaborador se contactara contigo</Text>
+        <Text style={styles.title}>Formulario</Text>
+        <Text style={styles.subtitle}>Completa tus datos y un colaborador se contactara contigo</Text>
         <View style={styles.dniContainer}>
           <CustomSelect
             options={options}
@@ -27,22 +62,64 @@ const LoanScreen = () => {
             onChange={setSelectedOption}
             placeholder="Seleccionar..."
           />
-         
-          <TextInput style={[styles.input, { width: '70%' }]} placeholder='Ingrese su DNI' maxLength={8} />
+          <TextInput
+            style={[styles.input, { width: '70%' }]}
+            placeholder='Ingrese su DNI'
+            value={data.dni}
+            onChangeText={(text) => setData({ ...data, dni: text })}
+            maxLength={8} />
         </View>
-        <TextInput style={styles.input} placeholder='Correo electrónico' />
-        <TextInput style={styles.input} placeholder='Numero de celular' />
-        <TextInput style={styles.input} placeholder='Nmbres' />
-        <TextInput style={styles.input} placeholder='Apellidos' />
-        <TextInput style={styles.input} placeholder='Monto de préstamo' />
-        <TextInput style={styles.input} placeholder='Cuotas' />
+        <TextInput
+          style={styles.input}
+          placeholder='Correo electrónico'
+          value={data.email}
+          onChangeText={(text) => setData({ ...data, email: text })}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder='Numero de celular'
+          value={data.phone}
+          onChangeText={(text) => setData({ ...data, phone: text })}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder='Nombres'
+          value={data.firstName}
+          onChangeText={(text) => setData({ ...data, firstName: text })}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder='Apellidos'
+          value={data.lastName}
+          onChangeText={(text) => setData({ ...data, lastName: text })}
+        />
+        <TextInput
+          keyboardType='numeric'
+          style={styles.input}
+          placeholder='Monto de préstamo'
+          value={data.loanAmount}
+          onChangeText={(text) => setData({ ...data, loanAmount: text })}
+        />
+        <CustomSelect
+          options={cuotas}
+          value={selectedCuotas}
+          onChange={setSelectedCuotas}
+          placeholder="Plazo del préstamo"
+        />
       </View>
+      {/* <Text>
+        {
+          JSON.stringify(data, null, 2)
+        }
+      </Text> */}
       <TouchableOpacity
         onPress={() => {
-          Alert.alert("Datos enviados correctamente")
+          handleSubmit()
         }}
         style={styles.button}>
-        <Text style={styles.textButton}>Enviar datos</Text>
+        <Text style={styles.textButton}>
+          Enviar datos
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   )
@@ -52,6 +129,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5'
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  subtitle: {
+    fontSize: 14,
+    marginBottom: 15,
+    color: '#555',
   },
   formContainer: {
     rowGap: 5,
