@@ -5,6 +5,7 @@ import MovementsScreen from '../modules/Movements/screens/Movements.screen';
 import LoanScreen from '../modules/loan/screens/LoanScreen';
 import ServiceScreen from '../modules/services/screens/ServiceScreen';
 import LoadingScreen from './LoadingScreen';
+import ServicesDetailScreen from '../modules/services/screens/ServicesDetailScreen';
 
 export type RootStackParamList = {
   Main: undefined;
@@ -13,6 +14,7 @@ export type RootStackParamList = {
   Loans: undefined;
   Services: undefined;
   Loading: undefined;
+  ServicesDetail: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -53,6 +55,11 @@ const HomeStackNavigation = () => {
         name="Services"
         component={ServiceScreen}
         options={{ title: 'Services' }}
+      />
+       <Stack.Screen
+        name="ServicesDetail"
+        component={ServicesDetailScreen}
+        options={{ title: 'Services Detail' }}
       />
     </Stack.Navigator>
   );

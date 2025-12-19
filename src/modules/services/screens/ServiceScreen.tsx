@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import { View, Text, StatusBar, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import { Header } from 'react-native-library-app-bank'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -13,6 +14,8 @@ const ServiceScreen = () => {
     {id:7, name:"Recolección de basura"},
   ]
 
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView>
       <StatusBar barStyle="dark-content" />
@@ -24,7 +27,9 @@ const ServiceScreen = () => {
           keyExtractor={(item, index) => index.toString()}
           contentContainerStyle={styles.serviceContainer}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.serviceItem}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ServicesDetail' as never)}
+            style={styles.serviceItem}>
               <Text style={styles.serviceText}>{item.name}</Text>
               
             </TouchableOpacity>
