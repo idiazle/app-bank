@@ -24,6 +24,13 @@ const cards = [
     cardHolder: 'ALICE JOHNSON',
     expiryDate: '10/25',
     brand: 'VISA',
+  },
+  {
+    balance: '$7,850.75',
+    cardNumber: '6789',
+    cardHolder: 'ALICE JOHNSON',
+    expiryDate: '10/25',
+    brand: 'VISA',
   }
 ]
 
