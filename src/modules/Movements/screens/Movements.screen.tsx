@@ -1,6 +1,7 @@
 import { View, StyleSheet, FlatList, Text } from 'react-native'
 import { Header, HeaderMovements, CardTransaction } from 'react-native-library-app-bank'
 import { useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export interface Transaction {
   id: string;
@@ -99,7 +100,7 @@ const MovementsScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header title='Movimientos' />
       <HeaderMovements arrayItems={MOCK_TRANSACTIONS}/>
       <Text>Mostrando {itemsDsplayed.length} de {MOCK_TRANSACTIONS.length}</Text>
@@ -113,7 +114,7 @@ const MovementsScreen = () => {
           <CardTransaction category={item.category} date={item.date} amount={item.amount} type={item.type} description={item.description} />
         )}
       />
-    </View>
+    </SafeAreaView>
   )
 }
 

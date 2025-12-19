@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native'
 import { Header } from 'react-native-library-app-bank'
 import { FontAwesome6 } from "@react-native-vector-icons/fontawesome6";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const options = [
   {
@@ -37,7 +38,7 @@ const ConfigurationScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header title="Configuración de la aplicación" />
       <View style={styles.optionsContainer}>
         {
@@ -64,7 +65,7 @@ const ConfigurationScreen = () => {
         <FontAwesome6 name="right-from-bracket" size={20} color="#7300df" iconStyle="solid" />
         <Text style={styles.buttonCloseSessionText}> Cerrar Sesión</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   )
 }
 

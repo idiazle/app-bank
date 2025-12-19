@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { BannerInformativo, Header, TargetOption } from 'react-native-library-app-bank';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const options = [
   { title: 'Tarjetas', description: 'Se listaran tus tarjetas de credito y debito', route: 'Tarjet', icon: 'credit-card' },
@@ -20,7 +21,7 @@ const MainScreen = () => {
   const route = useNavigation<any>();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header title='Inicio' />
       <Text>Bienvenido <Text style={styles.username}>Ivan Diaz</Text></Text>
       <View style={styles.containerOptions}>
@@ -44,7 +45,7 @@ const MainScreen = () => {
         <Text style={styles.bannerTitle}>Banner Informativos</Text>
         <BannerInformativo arrayItems={banner} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

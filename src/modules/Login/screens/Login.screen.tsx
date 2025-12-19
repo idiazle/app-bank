@@ -1,12 +1,14 @@
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar } from 'react-native';
 import { FontAwesome6 } from "@react-native-vector-icons/fontawesome6";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={style.container}>
+    <SafeAreaView style={style.container}>
+      <StatusBar barStyle="dark-content" />
       <View style={style.containerLogo}>
         <FontAwesome6 name="person" size={200} color="#7300df" iconStyle="solid" />
       </View>
@@ -21,7 +23,7 @@ const LoginScreen = () => {
         </TouchableOpacity>
       </View>
 
-    </View>
+    </SafeAreaView>
   );
 };
 

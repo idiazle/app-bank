@@ -4,6 +4,7 @@ import { getMessages, saveMessages } from '../utils/chatCache';
 import { useEffect, useState } from 'react';
 import { Message } from '../utils/chatCache';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ChatScreen = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -29,7 +30,7 @@ const ChatScreen = () => {
 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header title="Chatea con Robotin" />
       <ScrollView style={styles.messagesContainer}>
         {
@@ -54,7 +55,7 @@ const ChatScreen = () => {
           <FontAwesome6 name="paper-plane" size={20} color="#fff" iconStyle="solid" />
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 
